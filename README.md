@@ -45,3 +45,11 @@ To-Do
 * Static loader
 * Testing
 * Tests
+
+Contributors
+------------
+
+ * Tim: https://github.com/timini
+ * Neelesh Shastry - The guy who inspired the whole thing with that Posterous article: https://github.com/neeleshs
+ * https://github.com/bruth
+ * Andy Baker
