@@ -1,9 +1,10 @@
-django-squatter
-===============
+django-squatter [pre-alpha]
+===========================
 
 Django multi-tenancy, without any core patches required!
 
 Perfect for SAAS, saving memory, or other insane mad ideas.
+
 
 Quickstart
 ----------
@@ -13,13 +14,13 @@ Quickstart
 Add these to settings:
     
     DATABASE_ROUTERS = (
-        'squatter.routers.SquatterRouter',
+        'squatter.routers.TenancyRouter',
         ...
     )
 
     MIDDLEWARE_CLASSES = (
         ...
-        'squatter.middleware.SelectorMiddleware',
+        'squatter.middleware.TenancyMiddleware',
     )
 
     TEMPLATE_LOADERS = (
@@ -27,5 +28,18 @@ Add these to settings:
     )
 
     INSTALLED_APPS = (
+        ...
         'squatter',
+        ...
     )
+
+Do a migration, etc.
+
+To-Do
+-----
+
+* Template loader
+* Docs
+* Static loader
+* Testing
+* Tests
