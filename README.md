@@ -1,6 +1,8 @@
 django-squatter [pre-alpha]
 ===========================
 
+** DO NOT FUCKING USE THIS YET **
+
 Django multi-tenancy, without any core patches required!
 
 Perfect for SAAS, saving memory, or other insane mad ideas.
