@@ -42,9 +42,11 @@ To-Do
 
 * Template loader
 * Docs
+* Schemas option
 * Static loader
 * Testing
 * Tests
+* Some way of doing things like migrate/syncdb from the command line.
 
 Contributors
 ------------
