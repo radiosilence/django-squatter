@@ -31,4 +31,4 @@ class TenancyMiddleware:
 
     def process_exception(self, request, exception):
         _sites.pop(currentThread(), None)
-        return exception
+        return None
