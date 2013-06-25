@@ -6,7 +6,11 @@ from django.utils.text import slugify
 
 import settings
 
-from squatter.utils import get_site
+from squatter.utils import (
+    alias_from_domain,
+    get_site,
+)
+
 
 class Loader(BaseLoader):
     is_usable = True
@@ -15,14 +19,10 @@ class Loader(BaseLoader):
         
         site = get_site()
         if site:
-            site = site.domain.split(':')[0]
-            if site.endswith('.local'):
-                site = site[:-6]
-            site = site.replace('.', '_')
+            alias = alias_from_domain(site.domain)
 
             for dir_ in settings.TEMPLATE_DIRS:
-                path = os.path.join(dir_, site, template_name)
-                print path
+                path = os.path.join(dir_, alias, template_name)
                 try:
                     return open(path).read(), template_name
                 except IOError:
