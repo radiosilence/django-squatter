@@ -26,7 +26,7 @@ Add these to settings:
     )
 
     TEMPLATE_LOADERS = (
-        'squatter.template.loaders.by_domain.Loader',
+        'squatter.template.loaders.Loader',
     )
 
     INSTALLED_APPS = (
