@@ -7,8 +7,7 @@ from django.utils.text import slugify
 import settings
 
 from squatter.utils import (
-    alias_from_domain,
-    get_site,
+    get_tenant,
 )
 
 
@@ -17,9 +16,9 @@ class Loader(BaseLoader):
 
     def load_template_source(self, template_name, template_dirs=None):
         
-        site = get_site()
-        if site:
-            alias = alias_from_domain(site.domain)
+        tenant = get_tenant()
+        if tenant:
+            alias = tenant.alias
 
             for dir_ in settings.TEMPLATE_DIRS:
                 path = os.path.join(dir_, alias, template_name)

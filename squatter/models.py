@@ -8,10 +8,18 @@ DATABASE_ENGINE_CHOICES = (
     ('django.db.backends.sqlite3', 'SQLite'),
 )
 
+
+class TenantMapping(models):
+    site = models.ForeignKey(Site, unique=True)
+    tenant = models.ForeignKey('Tenant')
+
+
 class Tenant(models.Model):
-    site = models.OneToOneField(Site)
+    sites = models.ManyToManyField(Site, related_name='tenants',
+        through=TenantMapping)
     database_engine=models.CharField(max_length=255,
         choices=DATABASE_ENGINE_CHOICES, default=DATABASE_ENGINE_CHOICES[0][0])
+    alias = models.CharField(max_length=255)
     database_name=models.CharField(max_length=128)
     database_host=models.CharField(max_length=128, blank=True)
     database_port=models.CharField(max_length=128, blank=True)

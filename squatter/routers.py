@@ -1,16 +1,15 @@
 from squatter.utils import (
-    alias_from_domain,
-    get_site,
+    get_tenant,
 )
 
 
 class TenancyRouter(object):
     def _name(self, model, **hints):
-        site = get_site()
-        if site is None:
+        tenant = get_tenant()
+        if tenant is None:
             alias = 'default'
         else:
-            alias = alias_from_domain(site.domain)
+            alias = tenant.alias
         return alias
     def db_for_read(self, model, **hints):
         """
