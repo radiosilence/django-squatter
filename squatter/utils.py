@@ -15,28 +15,25 @@ _sites = {}
 
 def set_site(site, cls):
     from django.db import connections
-    try:
-        tenant = cls.objects.get(site=site)
-        alias = alias_from_domain(site.domain)
-        db = {
-            'ENGINE': tenant.database_engine,
-            'HOST': tenant.database_host,
-            'NAME': tenant.database_name,
-            'USER': tenant.database_user,
-            'PORT': tenant.database_port,
-            'PASSWORD': tenant.database_password,
-            'OPTIONS': json.loads(tenant.database_options),
-        }
-        backend = load_backend(db['ENGINE'])
-        conn = backend.DatabaseWrapper(db, alias)
-        connections[alias] = conn
-        _sites[currentThread()] = site
-    except Exception:
-        raise Exception('There was an issue loading database configuration for this site.')
+    tenant = cls.objects.get(site=site)
+    alias = alias_from_domain(site.domain)
+    db = {
+        'ENGINE': tenant.database_engine,
+        'HOST': tenant.database_host,
+        'NAME': tenant.database_name,
+        'USER': tenant.database_user,
+        'PORT': tenant.database_port,
+        'PASSWORD': tenant.database_password,
+        'OPTIONS': json.loads(tenant.database_options),
+    }
+    backend = load_backend(db['ENGINE'])
+    conn = backend.DatabaseWrapper(db, alias)
+    connections[alias] = conn
+    _sites[currentThread()] = site
 
 
 def get_site():
-    return _sites.get(currentThread(),None)
+    return _sites.get(currentThread(), None)
 
 
 def alias_from_domain(domain):
