@@ -9,7 +9,7 @@ DATABASE_ENGINE_CHOICES = (
 )
 
 
-class TenantMapping(models):
+class TenantMapping(models.Model):
     site = models.ForeignKey(Site, unique=True)
     tenant = models.ForeignKey('Tenant')
 
