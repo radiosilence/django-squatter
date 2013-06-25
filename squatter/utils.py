@@ -15,10 +15,10 @@ _sites = {}
 _tenants = {}
 
 
-def set_site(site, cls):
+def set_site(site):
     from django.db import connections
-    tenant = cls.objects.get(site=site)
-    alias = alias_from_domain(site.domain)
+    tenant = site.tenants.all()[0]
+    alias = tenant.alias
     db = {
         'ENGINE': tenant.database_engine,
         'HOST': tenant.database_host,

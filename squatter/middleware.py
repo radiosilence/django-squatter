@@ -1,5 +1,4 @@
 from django.contrib.sites.models import Site
-from squatter.models import Tenant
 from squatter.utils import (
     set_site,
     _sites,
@@ -21,7 +20,7 @@ class TenancyMiddleware:
         domain = request.get_host()
         try:
             site = Site.objects.get(domain=domain)
-            set_site(site, Tenant)
+            set_site(site)
         except Site.DoesNotExist:
             pass
         return None
