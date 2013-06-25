@@ -2,9 +2,8 @@ import os
 
 from django.template import TemplateDoesNotExist
 from django.template.loader import BaseLoader
-from django.utils.text import slugify
 
-import settings
+from django.conf import settings
 
 from squatter.utils import get_site
 
